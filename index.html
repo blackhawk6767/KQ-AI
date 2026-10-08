@@ -1,15 +1,2267 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KQ AI</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>KQ AI — Intelligence Hub</title>
+
+<style>
+
+/* =========================================================
+   KQ AI 2.0
+   ========================================================= */
+
+:root {
+    --bg: #050507;
+    --panel: #0b0b10;
+    --panel2: #101017;
+    --panel3: #15151d;
+
+    --border: rgba(255,255,255,.08);
+
+    --purple: #9d5cff;
+    --purple2: #6f35d9;
+
+    --green: #80ffab;
+
+    --text: #f5f5f7;
+    --muted: #858591;
+
+    --danger: #ff6678;
+
+    --radius: 16px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    background:
+        radial-gradient(
+            circle at 70% 0%,
+            rgba(123,61,220,.13),
+            transparent 35%
+        ),
+        var(--bg);
+
+    color: var(--text);
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   APP
+   ========================================================= */
+
+.app {
+    width: 100%;
+    height: 100vh;
+
+    display: flex;
+
+    position: relative;
+}
+
+
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
+
+.sidebar {
+    width: 285px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #0c0c12,
+            #08080c
+        );
+
+    border-right: 1px solid var(--border);
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 18px;
+
+    z-index: 20;
+}
+
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    margin-bottom: 20px;
+}
+
+
+.brand-icon {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #9d5cff,
+            #5622a9
+        );
+
+    box-shadow:
+        0 0 25px rgba(157,92,255,.35);
+
+    font-weight: 900;
+    font-size: 16px;
+}
+
+
+.brand-name {
+    font-size: 19px;
+    font-weight: 800;
+    letter-spacing: -.5px;
+}
+
+
+.brand-name span {
+    color: var(--purple);
+}
+
+
+.new-chat {
+    width: 100%;
+
+    padding: 13px 15px;
+
+    border: 1px solid rgba(157,92,255,.4);
+
+    border-radius: 13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(157,92,255,.16),
+            rgba(157,92,255,.04)
+        );
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    transition: .2s;
+}
+
+
+.new-chat:hover {
+    transform: translateY(-1px);
+
+    border-color: var(--purple);
+
+    box-shadow:
+        0 0 25px rgba(157,92,255,.15);
+}
+
+
+.search {
+    margin-top: 12px;
+
+    position: relative;
+}
+
+
+.search input {
+    width: 100%;
+
+    padding: 11px 12px 11px 36px;
+
+    border-radius: 11px;
+
+    border: 1px solid var(--border);
+
+    background: #111118;
+
+    color: white;
+
+    outline: none;
+}
+
+
+.search span {
+    position: absolute;
+
+    left: 12px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: #666674;
+}
+
+
+.section-title {
+    margin: 23px 7px 9px;
+
+    font-size: 11px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+
+    color: #62626d;
+}
+
+
+.history {
+    overflow-y: auto;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 3px;
+}
+
+
+.history-item {
+    border: none;
+
+    background: transparent;
+
+    color: #aaaab4;
+
+    padding: 10px;
+
+    border-radius: 10px;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    transition: .15s;
+}
+
+
+.history-item:hover {
+    background: #15151d;
+    color: white;
+}
+
+
+.sidebar-bottom {
+    margin-top: auto;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 4px;
+}
+
+
+.sidebar-button {
+    border: none;
+
+    background: transparent;
+
+    color: #9999a5;
+
+    padding: 11px;
+
+    border-radius: 10px;
+
+    text-align: left;
+
+    cursor: pointer;
+}
+
+
+.sidebar-button:hover {
+    background: #15151d;
+    color: white;
+}
+
+
+/* =========================================================
+   MAIN
+   ========================================================= */
+
+.main {
+    flex: 1;
+
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    position: relative;
+}
+
+
+/* =========================================================
+   TOPBAR
+   ========================================================= */
+
+.topbar {
+    height: 68px;
+
+    border-bottom: 1px solid var(--border);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 22px;
+
+    background:
+        rgba(8,8,12,.85);
+
+    backdrop-filter: blur(15px);
+
+    z-index: 10;
+}
+
+
+.model-selector {
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+
+    padding: 8px 11px;
+
+    border-radius: 11px;
+
+    border: 1px solid var(--border);
+
+    background: #101017;
+
+    cursor: pointer;
+}
+
+
+.model-dot {
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: var(--green);
+
+    box-shadow:
+        0 0 10px var(--green);
+}
+
+
+.model-name {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+
+.model-status {
+    color: #6f6f7b;
+    font-size: 12px;
+}
+
+
+.top-actions {
+    display: flex;
+    gap: 7px;
+}
+
+
+.icon-button {
+    width: 38px;
+    height: 38px;
+
+    border-radius: 11px;
+
+    border: 1px solid var(--border);
+
+    background: #101017;
+
+    color: #aaaab4;
+
+    cursor: pointer;
+
+    transition: .15s;
+}
+
+
+.icon-button:hover {
+    color: white;
+
+    border-color: rgba(157,92,255,.4);
+
+    background: #16131d;
+}
+
+
+/* =========================================================
+   CHAT
+   ========================================================= */
+
+.chat {
+    flex: 1;
+
+    overflow-y: auto;
+
+    scroll-behavior: smooth;
+
+    padding:
+        35px
+        20px
+        190px;
+}
+
+
+.chat-inner {
+    max-width: 900px;
+
+    margin: auto;
+}
+
+
+/* =========================================================
+   WELCOME
+   ========================================================= */
+
+.welcome {
+    min-height: 62vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+}
+
+
+.kq-orb {
+    width: 100px;
+    height: 100px;
+
+    border-radius: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        radial-gradient(
+            circle,
+            #b47cff,
+            #6b35d4 50%,
+            #281344
+        );
+
+    box-shadow:
+        0 0 60px rgba(157,92,255,.35);
+
+    font-size: 35px;
+    font-weight: 900;
+
+    margin-bottom: 28px;
+
+    animation:
+        floating 4s ease-in-out infinite;
+}
+
+
+@keyframes floating {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+
+.welcome h1 {
+    font-size: clamp(32px,5vw,52px);
+
+    letter-spacing: -2px;
+
+    line-height: 1.05;
+}
+
+
+.welcome h1 span {
+    color: var(--purple);
+}
+
+
+.welcome p {
+    margin-top: 13px;
+
+    color: var(--muted);
+
+    max-width: 550px;
+
+    line-height: 1.6;
+}
+
+
+.quick-actions {
+    margin-top: 30px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(180px,1fr));
+
+    gap: 10px;
+
+    width: min(620px,100%);
+}
+
+
+.quick {
+    padding: 15px;
+
+    border-radius: 14px;
+
+    border: 1px solid var(--border);
+
+    background:
+        rgba(255,255,255,.025);
+
+    color: #c7c7d0;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+
+.quick:hover {
+    border-color: rgba(157,92,255,.4);
+
+    background:
+        rgba(157,92,255,.06);
+
+    transform: translateY(-2px);
+}
+
+
+.quick strong {
+    display: block;
+
+    color: white;
+
+    margin-bottom: 4px;
+}
+
+
+.quick small {
+    color: #71717d;
+}
+
+
+/* =========================================================
+   MESSAGE
+   ========================================================= */
+
+.message {
+    display: flex;
+
+    gap: 13px;
+
+    margin-bottom: 30px;
+
+    animation:
+        messageIn .25s ease;
+}
+
+
+@keyframes messageIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.message.user {
+    flex-direction: row-reverse;
+}
+
+
+.avatar {
+    flex: 0 0 38px;
+
+    width: 38px;
+    height: 38px;
+
+    border-radius: 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #14141c;
+
+    border: 1px solid var(--border);
+
+    color: var(--purple);
+
+    font-size: 11px;
+    font-weight: 900;
+}
+
+
+.user .avatar {
+    color: var(--green);
+
+    border-color:
+        rgba(128,255,171,.18);
+}
+
+
+.message-content {
+    min-width: 0;
+
+    max-width: 80%;
+}
+
+
+.message.user .message-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+
+.bubble {
+    padding: 14px 16px;
+
+    border-radius: 17px;
+
+    line-height: 1.65;
+
+    white-space: pre-wrap;
+
+    word-break: break-word;
+
+    color: #e9e9ee;
+}
+
+
+.ai .bubble {
+    background:
+        rgba(255,255,255,.025);
+
+    border:
+        1px solid var(--border);
+}
+
+
+.user .bubble {
+    background:
+        linear-gradient(
+            135deg,
+            #28133f,
+            #1d102d
+        );
+
+    border:
+        1px solid rgba(157,92,255,.25);
+}
+
+
+.message-tools {
+    display: flex;
+
+    gap: 4px;
+
+    margin-top: 7px;
+
+    opacity: 0;
+
+    transition: .15s;
+}
+
+
+.message:hover .message-tools {
+    opacity: 1;
+}
+
+
+.tool {
+    border: none;
+
+    background: transparent;
+
+    color: #676773;
+
+    cursor: pointer;
+
+    padding: 4px 7px;
+
+    border-radius: 7px;
+
+    font-size: 12px;
+}
+
+
+.tool:hover {
+    background: #17171f;
+
+    color: white;
+}
+
+
+/* =========================================================
+   TYPING
+   ========================================================= */
+
+.typing {
+    display: flex;
+
+    gap: 5px;
+
+    padding: 5px 2px;
+}
+
+
+.typing span {
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: var(--purple);
+
+    animation:
+        typing 1.2s infinite;
+}
+
+
+.typing span:nth-child(2) {
+    animation-delay: .15s;
+}
+
+
+.typing span:nth-child(3) {
+    animation-delay: .3s;
+}
+
+
+@keyframes typing {
+
+    0%,
+    60%,
+    100% {
+        opacity: .25;
+        transform: translateY(0);
+    }
+
+    30% {
+        opacity: 1;
+        transform: translateY(-4px);
+    }
+}
+
+
+/* =========================================================
+   COMPOSER
+   ========================================================= */
+
+.composer-wrapper {
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    padding:
+        20px
+        20px
+        18px;
+
+    background:
+        linear-gradient(
+            transparent,
+            #050507 35%
+        );
+
+    z-index: 15;
+}
+
+
+.composer {
+    max-width: 900px;
+
+    margin: auto;
+
+    position: relative;
+
+    border-radius: 19px;
+
+    border: 1px solid #2a2934;
+
+    background:
+        linear-gradient(
+            145deg,
+            #111119,
+            #0b0b10
+        );
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.5);
+}
+
+
+.composer:focus-within {
+    border-color:
+        rgba(157,92,255,.55);
+
+    box-shadow:
+        0 0 0 3px rgba(157,92,255,.07),
+        0 20px 60px rgba(0,0,0,.5);
+}
+
+
+textarea {
+    width: 100%;
+
+    min-height: 62px;
+    max-height: 180px;
+
+    resize: none;
+
+    padding:
+        17px
+        60px
+        48px
+        17px;
+
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    color: white;
+
+    font:
+        inherit;
+
+    line-height: 1.5;
+}
+
+
+textarea::placeholder {
+    color: #666672;
+}
+
+
+.composer-actions {
+    position: absolute;
+
+    left: 10px;
+    right: 10px;
+    bottom: 9px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    pointer-events: none;
+}
+
+
+.left-tools,
+.right-tools {
+    display: flex;
+    gap: 4px;
+
+    pointer-events: auto;
+}
+
+
+.composer-button {
+    width: 32px;
+    height: 32px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background: transparent;
+
+    color: #777783;
+
+    cursor: pointer;
+}
+
+
+.composer-button:hover {
+    background: #191920;
+
+    color: white;
+}
+
+
+.send-button {
+    width: 35px;
+    height: 35px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #9d5cff,
+            #6428ce
+        );
+
+    color: white;
+
+    cursor: pointer;
+
+    font-weight: bold;
+
+    box-shadow:
+        0 0 18px rgba(157,92,255,.2);
+}
+
+
+.send-button:hover {
+    box-shadow:
+        0 0 28px rgba(157,92,255,.35);
+}
+
+
+.disclaimer {
+    text-align: center;
+
+    color: #4d4d58;
+
+    font-size: 10px;
+
+    margin-top: 7px;
+}
+
+
+/* =========================================================
+   MODAL
+   ========================================================= */
+
+.modal {
+    position: fixed;
+
+    inset: 0;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    background:
+        rgba(0,0,0,.65);
+
+    backdrop-filter: blur(8px);
+
+    z-index: 100;
+}
+
+
+.modal.active {
+    display: flex;
+}
+
+
+.modal-box {
+    width: min(450px,90%);
+
+    background: #111118;
+
+    border: 1px solid var(--border);
+
+    border-radius: 20px;
+
+    padding: 24px;
+
+    box-shadow:
+        0 30px 100px rgba(0,0,0,.6);
+}
+
+
+.modal-box h2 {
+    margin-bottom: 18px;
+}
+
+
+.setting {
+    padding: 14px 0;
+
+    border-bottom:
+        1px solid var(--border);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+}
+
+
+.setting:last-child {
+    border-bottom: none;
+}
+
+
+.close {
+    width: 100%;
+
+    margin-top: 18px;
+
+    padding: 11px;
+
+    border: none;
+
+    border-radius: 11px;
+
+    background: #191920;
+
+    color: white;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media(max-width:760px) {
+
+    .sidebar {
+        display: none;
+    }
+
+    .topbar {
+        height: 60px;
+
+        padding: 0 12px;
+    }
+
+    .chat {
+        padding:
+            25px
+            10px
+            180px;
+    }
+
+    .message-content {
+        max-width: 88%;
+    }
+
+    .quick-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .welcome {
+        min-height: 65vh;
+    }
+
+    .composer-wrapper {
+        padding:
+            10px
+            8px
+            12px;
+    }
+
+    .model-status {
+        display: none;
+    }
+}
+
+</style>
 </head>
+
 
 <body>
 
-    <h1>🤖 KQ AI</h1>
-    <p>Moje własne AI</p>
+<div class="app">
 
-</body>
-</html>
+<!-- =====================================================
+     SIDEBAR
+     ===================================================== -->
+
+<aside class="sidebar">
+
+    <div class="brand">
+
+        <div class="brand-icon">
+            KQ
+        </div>
+
+        <div class="brand-name">
+            KQ <span>AI</span>
+        </div>
+
+    </div>
+
+
+    <button
+        class="new-chat"
+        onclick="newChat()"
+    >
+        ＋ New conversation
+    </button>
+
+
+    <div class="search">
+
+        <span>⌕</span>
+
+        <input
+            id="searchInput"
+            placeholder="Szukaj rozmów..."
+            oninput="searchHistory()"
+        >
+
+    </div>
+
+
+    <div class="section-title">
+        Ostatnie rozmowy
+    </div>
+
+
+    <div
+        id="history"
+        class="history"
+    ></div>
+
+
+    <div class="sidebar-bottom">
+
+        <button
+            class="sidebar-button"
+            onclick="openSettings()"
+        >
+            ⚙️ Ustawienia
+        </button>
+
+        <button
+            class="sidebar-button"
+            onclick="clearAllHistory()"
+        >
+            🗑️ Wyczyść historię
+        </button>
+
+    </div>
+
+</aside>
+
+
+<!-- =====================================================
+     MAIN
+     ===================================================== -->
+
+<main class="main">
+
+
+<!-- TOPBAR -->
+
+<header class="topbar">
+
+    <div class="model-selector">
+
+        <div class="model-dot"></div>
+
+        <div class="model-name">
+            KQ AI
+        </div>
+
+        <div class="model-status">
+            Demo Engine
+        </div>
+
+    </div>
+
+
+    <div class="top-actions">
+
+        <button
+            class="icon-button"
+            onclick="newChat()"
+            title="Nowa rozmowa"
+        >
+            ＋
+        </button>
+
+        <button
+            class="icon-button"
+            onclick="openSettings()"
+            title="Ustawienia"
+        >
+            ⚙
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- CHAT -->
+
+<section
+    id="chat"
+    class="chat"
+>
+
+<div
+    id="chatInner"
+    class="chat-inner"
+>
+
+<!-- WELCOME -->
+
+<div
+    id="welcome"
+    class="welcome"
+>
+
+    <div class="kq-orb">
+        KQ
+    </div>
+
+
+    <h1>
+        Witaj w
+        <span>KQ AI</span>
+    </h1>
+
+
+    <p>
+        Inteligentny asystent tworzony w ramach
+        ekosystemu KQ.
+    </p>
+
+
+    <div class="quick-actions">
+
+        <button
+            class="quick"
+            onclick="quickPrompt('Pomóż mi wymyślić nowy projekt na stronę KQ Games.')"
+        >
+
+            <strong>
+                💡 Wymyśl projekt
+            </strong>
+
+            <small>
+                Pomysły na nowe projekty
+            </small>
+
+        </button>
+
+
+        <button
+            class="quick"
+            onclick="quickPrompt('Napisz mi ciekawy kod HTML na stronę.')"
+        >
+
+            <strong>
+                💻 Pomoc z kodem
+            </strong>
+
+            <small>
+                HTML, CSS i JavaScript
+            </small>
+
+        </button>
+
+
+        <button
+            class="quick"
+            onclick="quickPrompt('Wyjaśnij mi coś trudnego w prosty sposób.')"
+        >
+
+            <strong>
+                🧠 Wyjaśnij
+            </strong>
+
+            <small>
+                Nauka bez komplikowania
+            </small>
+
+        </button>
+
+
+        <button
+            class="quick"
+            onclick="quickPrompt('Wymyśl mi coś kreatywnego.')"
+        >
+
+            <strong>
+                🚀 Kreatywność
+            </strong>
+
+            <small>
+                Pomysły, nazwy i projekty
+            </small>
+
+        </button>
+
+    </div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- COMPOSER -->
+
+<div class="composer-wrapper">
+
+<div class="composer">
+
+<textarea
+    id="input"
+    placeholder="Napisz wiadomość do KQ AI..."
+></textarea>
+
+
+<div class="composer-actions">
+
+    <div class="left-tools">
+
+        <button
+            class="composer-button"
+            title="Dodaj plik"
+            onclick="fakeFeature('📎 Załączniki będą dostępne w kolejnej wersji.')"
+        >
+            📎
+        </button>
+
+        <button
+            class="composer-button"
+            title="Mikrofon"
+            onclick="fakeFeature('🎤 Rozpoznawanie głosu będzie dodane później.')"
+        >
+            🎤
+        </button>
+
+    </div>
+
+
+    <div class="right-tools">
+
+        <button
+            id="sendButton"
+            class="send-button"
+            onclick="sendMessage()"
+        >
+            ↑
+        </button>
+
+    </div>
+
+</div>
+
+</div>
+
+
+<div class="disclaimer">
+    KQ AI może popełniać błędy. Sprawdzaj ważne informacje.
+</div>
+
+</div>
+
+</main>
+
+</div>
+
+
+<!-- =====================================================
+     SETTINGS MODAL
+     ===================================================== -->
+
+<div
+    id="settingsModal"
+    class="modal"
+    onclick="closeModalOutside(event)"
+>
+
+<div class="modal-box">
+
+    <h2>
+        ⚙️ KQ AI — ustawienia
+    </h2>
+
+
+    <div class="setting">
+
+        <span>
+            Tryb demonstracyjny
+        </span>
+
+        <span style="color:#80ffab">
+            AKTYWNY
+        </span>
+
+    </div>
+
+
+    <div class="setting">
+
+        <span>
+            Zapisywanie rozmów
+        </span>
+
+        <span style="color:#80ffab">
+            ON
+        </span>
+
+    </div>
+
+
+    <div class="setting">
+
+        <span>
+            Wersja
+        </span>
+
+        <span>
+            2.0
+        </span>
+
+    </div>
+
+
+    <button
+        class="close"
+        onclick="closeSettings()"
+    >
+        Zamknij
+    </button>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   KQ AI ENGINE
+   ========================================================= */
+
+const input =
+    document.getElementById("input");
+
+const chat =
+    document.getElementById("chat");
+
+const chatInner =
+    document.getElementById("chatInner");
+
+const history =
+    document.getElementById("history");
+
+
+let conversation = [];
+
+
+/* =========================================================
+   START
+   ========================================================= */
+
+loadHistory();
+
+
+/* =========================================================
+   SEND MESSAGE
+   ========================================================= */
+
+function sendMessage() {
+
+    const text =
+        input.value.trim();
+
+    if (!text) return;
+
+
+    document
+        .getElementById("welcome")
+        ?.remove();
+
+
+    addMessage(
+        "user",
+        text
+    );
+
+
+    conversation.push({
+        role: "user",
+        content: text
+    });
+
+
+    input.value = "";
+
+    resizeInput();
+
+
+    showTyping();
+
+
+    /*
+       ======================================================
+       TUTAJ BĘDZIE PRAWDZIWE API AI
+       ======================================================
+
+       Przykładowo później:
+
+       fetch("/api/chat", {
+           method: "POST",
+           headers: {
+               "Content-Type": "application/json"
+           },
+           body: JSON.stringify({
+               messages: conversation
+           })
+       })
+
+       API KEY NIE MOŻE ZNAJDOWAĆ SIĘ W TYM PLIKU.
+       ======================================================
+    */
+
+
+    setTimeout(() => {
+
+        hideTyping();
+
+
+        const response =
+            demoAI(text);
+
+
+        addMessage(
+            "ai",
+            response
+        );
+
+
+        conversation.push({
+            role: "assistant",
+            content: response
+        });
+
+
+        saveConversation();
+
+    }, 900);
+
+}
+
+
+/* =========================================================
+   DEMO AI
+   ========================================================= */
+
+function demoAI(text) {
+
+    const lower =
+        text.toLowerCase();
+
+
+    if (
+        lower.includes("hej") ||
+        lower.includes("cześć") ||
+        lower.includes("siema")
+    ) {
+
+        return `
+Hej! 👋
+
+Tu KQ AI.
+
+W tej wersji działa już cały interfejs aplikacji, a następnym krokiem jest podłączenie prawdziwego modelu AI.
+
+KQ AI będzie wtedy mogło normalnie prowadzić rozmowy.
+        `.trim();
+
+    }
+
+
+    if (
+        lower.includes("kod") ||
+        lower.includes("html") ||
+        lower.includes("javascript")
+    ) {
+
+        return `
+💻 Jasne!
+
+KQ AI może być później używane również jako pomocnik programistyczny.
+
+Możemy zrobić np.:
+
+• generowanie HTML
+• CSS
+• JavaScript
+• poprawianie błędów
+• tworzenie całych stron
+• analizowanie kodu
+
+A wszystko może być spięte z ekosystemem KQ.
+        `.trim();
+
+    }
+
+
+    if (
+        lower.includes("kq") ||
+        lower.includes("games")
+    ) {
+
+        return `
+🔥 KQ AI + KQ Games to już może być naprawdę mocny projekt.
+
+Możemy zrobić jeden wspólny panel KQ, w którym będą:
+
+🎮 KQ Games
+🤖 KQ AI
+💬 KQGame Chat
+👤 konto użytkownika
+🏆 osiągnięcia
+⚙️ ustawienia
+
+Czyli cały ekosystem KQ w jednym miejscu.
+        `.trim();
+
+    }
+
+
+    return `
+Rozumiem. 👀
+
+To jest obecnie demonstracyjna wersja KQ AI.
+
+Interfejs jest już przygotowany pod prawdziwy model AI.
+
+Kolejny krok:
+🔌 backend → API → prawdziwa odpowiedź AI.
+
+Wtedy KQ AI przestanie korzystać z odpowiedzi demo i zacznie naprawdę myśleć poprzez podłączony model.
+    `.trim();
+
+}
+
+
+/* =========================================================
+   ADD MESSAGE
+   ========================================================= */
+
+function addMessage(
+    type,
+    text
+) {
+
+    const message =
+        document.createElement("div");
+
+    message.className =
+        "message " + type;
+
+
+    const avatar =
+        document.createElement("div");
+
+    avatar.className =
+        "avatar";
+
+    avatar.textContent =
+        type === "ai"
+            ? "KQ"
+            : "TY";
+
+
+    const content =
+        document.createElement("div");
+
+    content.className =
+        "message-content";
+
+
+    const bubble =
+        document.createElement("div");
+
+    bubble.className =
+        "bubble";
+
+    bubble.textContent =
+        text;
+
+
+    content.appendChild(
+        bubble
+    );
+
+
+    if (type === "ai") {
+
+        const tools =
+            document.createElement("div");
+
+        tools.className =
+            "message-tools";
+
+
+        tools.innerHTML = `
+
+            <button
+                class="tool"
+                onclick="copyText(this)"
+            >
+                📋 Kopiuj
+            </button>
+
+            <button
+                class="tool"
+                onclick="this.textContent='👍 Dzięki!'"
+            >
+                👍
+            </button>
+
+            <button
+                class="tool"
+                onclick="this.textContent='👎 Dzięki za feedback'"
+            >
+                👎
+            </button>
+
+        `;
+
+
+        content.appendChild(
+            tools
+        );
+
+    }
+
+
+    message.appendChild(
+        avatar
+    );
+
+    message.appendChild(
+        content
+    );
+
+
+    chatInner.appendChild(
+        message
+    );
+
+
+    scrollBottom();
+}
+
+
+/* =========================================================
+   TYPING
+   ========================================================= */
+
+function showTyping() {
+
+    if (
+        document.getElementById("typing")
+    ) return;
+
+
+    const typing =
+        document.createElement("div");
+
+    typing.id =
+        "typing";
+
+    typing.className =
+        "message ai";
+
+
+    typing.innerHTML = `
+
+        <div class="avatar">
+            KQ
+        </div>
+
+        <div class="message-content">
+
+            <div class="typing">
+
+                <span></span>
+                <span></span>
+                <span></span>
+
+            </div>
+
+        </div>
+    `;
+
+
+    chatInner.appendChild(
+        typing
+    );
+
+
+    scrollBottom();
+}
+
+
+function hideTyping() {
+
+    document
+        .getElementById("typing")
+        ?.remove();
+
+}
+
+
+/* =========================================================
+   COPY
+   ========================================================= */
+
+function copyText(button) {
+
+    const bubble =
+        button
+            .closest(".message-content")
+            .querySelector(".bubble");
+
+
+    navigator.clipboard
+        .writeText(
+            bubble.textContent
+        );
+
+
+    button.textContent =
+        "✓ Skopiowano";
+
+
+    setTimeout(() => {
+
+        button.textContent =
+            "📋 Kopiuj";
+
+    }, 1500);
+
+}
+
+
+/* =========================================================
+   NEW CHAT
+   ========================================================= */
+
+function newChat() {
+
+    conversation = [];
+
+
+    chatInner.innerHTML = `
+
+        <div
+            id="welcome"
+            class="welcome"
+        >
+
+            <div class="kq-orb">
+                KQ
+            </div>
+
+            <h1>
+                Witaj w
+                <span>KQ AI</span>
+            </h1>
+
+            <p>
+                Inteligentny asystent tworzony
+                w ramach ekosystemu KQ.
+            </p>
+
+        </div>
+
+    `;
+
+    input.focus();
+}
+
+
+/* =========================================================
+   QUICK PROMPT
+   ========================================================= */
+
+function quickPrompt(text) {
+
+    input.value =
+        text;
+
+    resizeInput();
+
+    input.focus();
+
+}
+
+
+/* =========================================================
+   INPUT
+   ========================================================= */
+
+input.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (
+            event.key === "Enter" &&
+            !event.shiftKey
+        ) {
+
+            event.preventDefault();
+
+            sendMessage();
+
+        }
+
+    }
+);
+
+
+input.addEventListener(
+    "input",
+    resizeInput
+);
+
+
+function resizeInput() {
+
+    input.style.height =
+        "auto";
+
+    input.style.height =
+        Math.min(
+            input.scrollHeight,
+            180
+        ) + "px";
+
+}
+
+
+/* =========================================================
+   SCROLL
+   ========================================================= */
+
+function scrollBottom() {
+
+    requestAnimationFrame(() => {
+
+        chat.scrollTop =
+            chat.scrollHeight;
+
+    });
+
+}
+
+
+/* =========================================================
+   LOCAL STORAGE
+   ========================================================= */
+
+function saveConversation() {
+
+    if (
+        conversation.length === 0
+    ) return;
+
+
+    const saved =
+        JSON.parse(
+            localStorage.getItem(
+                "kq_ai_history"
+            ) || "[]"
+        );
+
+
+    const first =
+        conversation.find(
+            x => x.role === "user"
+        );
+
+
+    saved.unshift({
+        title:
+            first
+                ? first.content.substring(0,40)
+                : "Nowa rozmowa",
+
+        messages:
+            conversation,
+
+        date:
+            Date.now()
+    });
+
+
+    localStorage.setItem(
+        "kq_ai_history",
+        JSON.stringify(
+            saved.slice(0,30)
+        )
+    );
+
+
+    loadHistory();
+}
+
+
+/* =========================================================
+   HISTORY
+   ========================================================= */
+
+function loadHistory() {
+
+    history.innerHTML = "";
+
+
+    const saved =
+        JSON.parse(
+            localStorage.getItem(
+                "kq_ai_history"
+            ) || "[]"
+        );
+
+
+    saved.forEach(
+        (item, index) => {
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+
+            button.className =
+                "history-item";
+
+
+            button.textContent =
+                item.title;
+
+
+            button.onclick = () =>
+                loadConversation(
+                    item
+                );
+
+
+            history.appendChild(
+                button
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   LOAD CONVERSATION
+   ========================================================= */
+
+function loadConversation(item) {
+
+    conversation =
+        item.messages || [];
+
+
+    chatInner.innerHTML =
+        "";
+
+
+    conversation.forEach(
+        message => {
+
+            addMessage(
+                message.role === "user"
+                    ? "user"
+                    : "ai",
+
+                message.content
+            );
+
+        }
+    );
+
+
+    scrollBottom();
+}
+
+
+/* =========================================================
+   SEARCH
+   ========================================================= */
+
+function searchHistory() {
+
+    const query =
+        document
+            .getElementById(
+                "searchInput"
+            )
+            .value
+            .toLowerCase();
+
+
+    document
+        .querySelectorAll(
+            ".history-item"
+        )
+        .forEach(item => {
+
+            item.style.display =
+                item.textContent
+                    .toLowerCase()
+                    .includes(query)
+                        ? "block"
+                        : "none";
+
+        });
+
+}
+
+
+/* =========================================================
+   CLEAR HISTORY
+   ========================================================= */
+
+function clearAllHistory() {
+
+    if (
+        !confirm(
+            "Na pewno wyczyścić całą historię?"
+        )
+    ) return;
+
+
+    localStorage.removeItem(
+        "kq_ai_history"
+    );
+
+
+    loadHistory();
+}
+
+
+/* =========================================================
+   SETTINGS
+   ========================================================= */
+
+function openSettings() {
+
+    document
+        .getElementById(
+            "settingsModal"
+        )
+        .classList.add(
+            "active"
+        );
+
+}
+
+
+function closeSettings() {
+
+    document
+        .getElementById(
+            "settingsModal"
+        )
+        .classList.remove(
+            "active"
+        );
+
+}
+
+
+function closeModalOutside(event) {
+
+    if (
+        event.target.id ===
+        "settingsModal"
+    ) {
+
+        closeSettings();
+
+    }
+
+}
+
+
+/* =========================================================
+   FUTURE FEATURES
+   ========================================================= */
+
+function fakeFeature(text) {
+
+    alert(text
