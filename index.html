@@ -4,513 +4,230 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>KQ AI — Intelligence Hub</title>
+<title>KQ AI</title>
 
 <style>
-
-/* =========================================================
-   KQ AI 2.0
-   ========================================================= */
-
-:root {
-    --bg: #050507;
-    --panel: #0b0b10;
-    --panel2: #101017;
-    --panel3: #15151d;
-
-    --border: rgba(255,255,255,.08);
-
-    --purple: #9d5cff;
-    --purple2: #6f35d9;
-
-    --green: #80ffab;
-
-    --text: #f5f5f7;
-    --muted: #858591;
-
-    --danger: #ff6678;
-
-    --radius: 16px;
-}
-
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-html,
-body {
-    width: 100%;
-    height: 100%;
+:root {
+    --bg: #050507;
+    --panel: #0c0c11;
+    --panel2: #111118;
+    --border: #24242e;
+    --purple: #9b5cff;
+    --purple2: #6d2fd1;
+    --green: #7cffaa;
+    --text: #f4f4f7;
+    --muted: #888894;
 }
 
 body {
-    font-family:
-        Inter,
-        system-ui,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
+    font-family: Arial, sans-serif;
     background:
-        radial-gradient(
-            circle at 70% 0%,
-            rgba(123,61,220,.13),
-            transparent 35%
-        ),
+        radial-gradient(circle at 70% 0%, #32145e55, transparent 35%),
         var(--bg);
-
     color: var(--text);
-
+    height: 100vh;
     overflow: hidden;
 }
 
-
-/* =========================================================
-   APP
-   ========================================================= */
+/* APP */
 
 .app {
-    width: 100%;
-    height: 100vh;
-
     display: flex;
-
-    position: relative;
+    height: 100vh;
 }
 
-
-/* =========================================================
-   SIDEBAR
-   ========================================================= */
+/* SIDEBAR */
 
 .sidebar {
-    width: 285px;
-
-    background:
-        linear-gradient(
-            180deg,
-            #0c0c12,
-            #08080c
-        );
-
+    width: 270px;
+    background: #09090d;
     border-right: 1px solid var(--border);
-
+    padding: 18px;
     display: flex;
     flex-direction: column;
-
-    padding: 18px;
-
-    z-index: 20;
 }
 
-
-.brand {
+.logo {
     display: flex;
     align-items: center;
     gap: 12px;
-
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
-
-.brand-icon {
-    width: 42px;
-    height: 42px;
-
+.logo-box {
+    width: 44px;
+    height: 44px;
+    border-radius: 13px;
     display: flex;
     align-items: center;
     justify-content: center;
-
-    border-radius: 13px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #9d5cff,
-            #5622a9
-        );
-
-    box-shadow:
-        0 0 25px rgba(157,92,255,.35);
-
     font-weight: 900;
-    font-size: 16px;
+    background: linear-gradient(135deg, var(--purple), var(--purple2));
+    box-shadow: 0 0 30px #8d4cff55;
 }
 
-
-.brand-name {
-    font-size: 19px;
-    font-weight: 800;
-    letter-spacing: -.5px;
+.logo-text {
+    font-size: 20px;
+    font-weight: bold;
 }
 
-
-.brand-name span {
+.logo-text span {
     color: var(--purple);
 }
 
-
 .new-chat {
-    width: 100%;
-
-    padding: 13px 15px;
-
-    border: 1px solid rgba(157,92,255,.4);
-
-    border-radius: 13px;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(157,92,255,.16),
-            rgba(157,92,255,.04)
-        );
-
+    border: 1px solid #8e4cff66;
+    background: #9b5cff16;
     color: white;
-
+    padding: 13px;
+    border-radius: 12px;
     cursor: pointer;
-
-    font-size: 14px;
-    font-weight: 600;
-
-    transition: .2s;
+    font-weight: bold;
 }
-
 
 .new-chat:hover {
-    transform: translateY(-1px);
-
-    border-color: var(--purple);
-
-    box-shadow:
-        0 0 25px rgba(157,92,255,.15);
+    background: #9b5cff25;
 }
 
-
-.search {
-    margin-top: 12px;
-
-    position: relative;
-}
-
-
-.search input {
-    width: 100%;
-
-    padding: 11px 12px 11px 36px;
-
-    border-radius: 11px;
-
-    border: 1px solid var(--border);
-
-    background: #111118;
-
-    color: white;
-
-    outline: none;
-}
-
-
-.search span {
-    position: absolute;
-
-    left: 12px;
-    top: 50%;
-
-    transform: translateY(-50%);
-
-    color: #666674;
-}
-
-
-.section-title {
-    margin: 23px 7px 9px;
-
+.history-title {
+    margin: 25px 5px 10px;
     font-size: 11px;
-
+    color: #666672;
     text-transform: uppercase;
-
     letter-spacing: 1px;
-
-    color: #62626d;
 }
-
 
 .history {
     overflow-y: auto;
-
-    display: flex;
-    flex-direction: column;
-
-    gap: 3px;
 }
-
 
 .history-item {
+    width: 100%;
     border: none;
-
     background: transparent;
-
     color: #aaaab4;
-
-    padding: 10px;
-
-    border-radius: 10px;
-
     text-align: left;
-
+    padding: 10px;
+    border-radius: 9px;
     cursor: pointer;
-
-    white-space: nowrap;
-
     overflow: hidden;
-
+    white-space: nowrap;
     text-overflow: ellipsis;
-
-    transition: .15s;
 }
-
 
 .history-item:hover {
-    background: #15151d;
+    background: #15151c;
     color: white;
 }
-
 
 .sidebar-bottom {
     margin-top: auto;
-
-    display: flex;
-    flex-direction: column;
-
-    gap: 4px;
 }
 
-
 .sidebar-button {
-    border: none;
-
-    background: transparent;
-
-    color: #9999a5;
-
+    width: 100%;
     padding: 11px;
-
-    border-radius: 10px;
-
+    border: none;
+    background: transparent;
+    color: #858591;
     text-align: left;
-
+    border-radius: 9px;
     cursor: pointer;
 }
 
-
 .sidebar-button:hover {
-    background: #15151d;
+    background: #15151c;
     color: white;
 }
 
-
-/* =========================================================
-   MAIN
-   ========================================================= */
+/* MAIN */
 
 .main {
     flex: 1;
-
-    min-width: 0;
-
     display: flex;
     flex-direction: column;
-
-    position: relative;
+    min-width: 0;
 }
 
+/* TOP */
 
-/* =========================================================
-   TOPBAR
-   ========================================================= */
-
-.topbar {
-    height: 68px;
-
+.top {
+    height: 65px;
     border-bottom: 1px solid var(--border);
-
     display: flex;
-
     align-items: center;
-
     justify-content: space-between;
-
-    padding: 0 22px;
-
-    background:
-        rgba(8,8,12,.85);
-
-    backdrop-filter: blur(15px);
-
-    z-index: 10;
+    padding: 0 20px;
+    background: #08080cdd;
+    backdrop-filter: blur(10px);
 }
 
-
-.model-selector {
+.status {
     display: flex;
     align-items: center;
-
     gap: 9px;
-
-    padding: 8px 11px;
-
-    border-radius: 11px;
-
-    border: 1px solid var(--border);
-
-    background: #101017;
-
-    cursor: pointer;
+    font-weight: bold;
 }
 
-
-.model-dot {
+.status-dot {
     width: 8px;
     height: 8px;
-
-    border-radius: 50%;
-
     background: var(--green);
-
-    box-shadow:
-        0 0 10px var(--green);
+    border-radius: 50%;
+    box-shadow: 0 0 12px var(--green);
 }
 
-
-.model-name {
-    font-size: 14px;
-    font-weight: 700;
+.top-right {
+    color: #777783;
+    font-size: 13px;
 }
 
-
-.model-status {
-    color: #6f6f7b;
-    font-size: 12px;
-}
-
-
-.top-actions {
-    display: flex;
-    gap: 7px;
-}
-
-
-.icon-button {
-    width: 38px;
-    height: 38px;
-
-    border-radius: 11px;
-
-    border: 1px solid var(--border);
-
-    background: #101017;
-
-    color: #aaaab4;
-
-    cursor: pointer;
-
-    transition: .15s;
-}
-
-
-.icon-button:hover {
-    color: white;
-
-    border-color: rgba(157,92,255,.4);
-
-    background: #16131d;
-}
-
-
-/* =========================================================
-   CHAT
-   ========================================================= */
+/* CHAT */
 
 .chat {
     flex: 1;
-
     overflow-y: auto;
-
-    scroll-behavior: smooth;
-
-    padding:
-        35px
-        20px
-        190px;
+    padding: 35px 20px 170px;
 }
-
 
 .chat-inner {
     max-width: 900px;
-
     margin: auto;
 }
 
-
-/* =========================================================
-   WELCOME
-   ========================================================= */
+/* WELCOME */
 
 .welcome {
-    min-height: 62vh;
-
+    min-height: 60vh;
     display: flex;
-
     flex-direction: column;
-
     align-items: center;
-
     justify-content: center;
-
     text-align: center;
 }
 
-
-.kq-orb {
-    width: 100px;
-    height: 100px;
-
-    border-radius: 30px;
-
+.orb {
+    width: 95px;
+    height: 95px;
+    border-radius: 28px;
+    background: radial-gradient(circle, #bd91ff, #7138d5 55%, #27103e);
     display: flex;
     align-items: center;
     justify-content: center;
-
-    background:
-        radial-gradient(
-            circle,
-            #b47cff,
-            #6b35d4 50%,
-            #281344
-        );
-
-    box-shadow:
-        0 0 60px rgba(157,92,255,.35);
-
-    font-size: 35px;
+    font-size: 28px;
     font-weight: 900;
-
-    margin-bottom: 28px;
-
-    animation:
-        floating 4s ease-in-out infinite;
+    box-shadow: 0 0 60px #9b5cff55;
+    animation: float 3s infinite ease-in-out;
 }
 
-
-@keyframes floating {
-
-    0%,
-    100% {
+@keyframes float {
+    0%,100% {
         transform: translateY(0);
     }
 
@@ -519,108 +236,59 @@ body {
     }
 }
 
-
 .welcome h1 {
-    font-size: clamp(32px,5vw,52px);
-
-    letter-spacing: -2px;
-
-    line-height: 1.05;
+    margin-top: 25px;
+    font-size: 48px;
 }
-
 
 .welcome h1 span {
     color: var(--purple);
 }
 
-
 .welcome p {
-    margin-top: 13px;
-
     color: var(--muted);
-
-    max-width: 550px;
-
-    line-height: 1.6;
+    margin-top: 12px;
 }
 
-
-.quick-actions {
-    margin-top: 30px;
-
+.examples {
     display: grid;
-
-    grid-template-columns:
-        repeat(2, minmax(180px,1fr));
-
+    grid-template-columns: repeat(2, 1fr);
     gap: 10px;
-
-    width: min(620px,100%);
+    margin-top: 30px;
+    width: min(650px, 100%);
 }
 
-
-.quick {
+.example {
     padding: 15px;
-
-    border-radius: 14px;
-
     border: 1px solid var(--border);
-
-    background:
-        rgba(255,255,255,.025);
-
-    color: #c7c7d0;
-
+    background: #ffffff05;
+    color: #ccc;
+    border-radius: 13px;
     text-align: left;
-
     cursor: pointer;
-
-    transition: .2s;
 }
 
-
-.quick:hover {
-    border-color: rgba(157,92,255,.4);
-
-    background:
-        rgba(157,92,255,.06);
-
-    transform: translateY(-2px);
+.example:hover {
+    border-color: #9b5cff66;
+    background: #9b5cff0b;
 }
 
-
-.quick strong {
+.example b {
     display: block;
-
     color: white;
-
-    margin-bottom: 4px;
+    margin-bottom: 5px;
 }
 
-
-.quick small {
-    color: #71717d;
-}
-
-
-/* =========================================================
-   MESSAGE
-   ========================================================= */
+/* MESSAGE */
 
 .message {
     display: flex;
-
-    gap: 13px;
-
-    margin-bottom: 30px;
-
-    animation:
-        messageIn .25s ease;
+    gap: 12px;
+    margin-bottom: 25px;
+    animation: appear .2s ease;
 }
 
-
-@keyframes messageIn {
-
+@keyframes appear {
     from {
         opacity: 0;
         transform: translateY(5px);
@@ -632,871 +300,345 @@ body {
     }
 }
 
-
 .message.user {
     flex-direction: row-reverse;
 }
 
-
 .avatar {
-    flex: 0 0 38px;
-
-    width: 38px;
+    min-width: 38px;
     height: 38px;
-
     border-radius: 12px;
-
+    background: #14141c;
+    border: 1px solid var(--border);
     display: flex;
     align-items: center;
     justify-content: center;
-
-    background: #14141c;
-
-    border: 1px solid var(--border);
-
-    color: var(--purple);
-
     font-size: 11px;
-    font-weight: 900;
+    font-weight: bold;
+    color: var(--purple);
 }
-
 
 .user .avatar {
     color: var(--green);
-
-    border-color:
-        rgba(128,255,171,.18);
 }
 
-
-.message-content {
-    min-width: 0;
-
+.content {
     max-width: 80%;
 }
 
-
-.message.user .message-content {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-}
-
-
 .bubble {
     padding: 14px 16px;
-
-    border-radius: 17px;
-
-    line-height: 1.65;
-
+    border-radius: 16px;
+    line-height: 1.6;
     white-space: pre-wrap;
-
-    word-break: break-word;
-
-    color: #e9e9ee;
 }
-
 
 .ai .bubble {
-    background:
-        rgba(255,255,255,.025);
-
-    border:
-        1px solid var(--border);
+    background: #ffffff04;
+    border: 1px solid var(--border);
 }
-
 
 .user .bubble {
-    background:
-        linear-gradient(
-            135deg,
-            #28133f,
-            #1d102d
-        );
-
-    border:
-        1px solid rgba(157,92,255,.25);
+    background: linear-gradient(135deg, #2b1543, #1b1028);
+    border: 1px solid #9b5cff33;
 }
 
+/* COMPOSER */
 
-.message-tools {
-    display: flex;
-
-    gap: 4px;
-
-    margin-top: 7px;
-
-    opacity: 0;
-
-    transition: .15s;
+.composer-area {
+    position: absolute;
+    bottom: 0;
+    left: 270px;
+    right: 0;
+    padding: 20px;
+    background: linear-gradient(transparent, #050507 30%);
 }
 
-
-.message:hover .message-tools {
-    opacity: 1;
+.composer {
+    max-width: 900px;
+    margin: auto;
+    background: #101017;
+    border: 1px solid #292934;
+    border-radius: 18px;
+    position: relative;
 }
 
+.composer:focus-within {
+    border-color: #9b5cff88;
+    box-shadow: 0 0 0 3px #9b5cff0b;
+}
 
-.tool {
+textarea {
+    width: 100%;
+    min-height: 65px;
+    max-height: 170px;
+    resize: none;
     border: none;
-
+    outline: none;
     background: transparent;
-
-    color: #676773;
-
-    cursor: pointer;
-
-    padding: 4px 7px;
-
-    border-radius: 7px;
-
-    font-size: 12px;
-}
-
-
-.tool:hover {
-    background: #17171f;
-
     color: white;
+    padding: 17px 55px 17px 17px;
+    font: inherit;
+    line-height: 1.5;
 }
 
+textarea::placeholder {
+    color: #656571;
+}
 
-/* =========================================================
-   TYPING
-   ========================================================= */
+.send {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    width: 38px;
+    height: 38px;
+    border: none;
+    border-radius: 11px;
+    background: linear-gradient(135deg, var(--purple), var(--purple2));
+    color: white;
+    font-size: 19px;
+    cursor: pointer;
+}
+
+.send:hover {
+    box-shadow: 0 0 20px #9b5cff66;
+}
+
+.disclaimer {
+    text-align: center;
+    color: #555560;
+    font-size: 10px;
+    margin-top: 7px;
+}
+
+/* TYPING */
 
 .typing {
     display: flex;
-
     gap: 5px;
-
-    padding: 5px 2px;
+    padding: 10px 3px;
 }
-
 
 .typing span {
-    width: 6px;
-    height: 6px;
-
-    border-radius: 50%;
-
+    width: 7px;
+    height: 7px;
     background: var(--purple);
-
-    animation:
-        typing 1.2s infinite;
+    border-radius: 50%;
+    animation: typing 1s infinite;
 }
-
 
 .typing span:nth-child(2) {
     animation-delay: .15s;
 }
 
-
 .typing span:nth-child(3) {
     animation-delay: .3s;
 }
 
-
 @keyframes typing {
-
-    0%,
-    60%,
-    100% {
-        opacity: .25;
+    0%,100% {
+        opacity: .2;
         transform: translateY(0);
     }
 
-    30% {
+    50% {
         opacity: 1;
         transform: translateY(-4px);
     }
 }
 
+/* MOBILE */
 
-/* =========================================================
-   COMPOSER
-   ========================================================= */
-
-.composer-wrapper {
-    position: absolute;
-
-    left: 0;
-    right: 0;
-    bottom: 0;
-
-    padding:
-        20px
-        20px
-        18px;
-
-    background:
-        linear-gradient(
-            transparent,
-            #050507 35%
-        );
-
-    z-index: 15;
-}
-
-
-.composer {
-    max-width: 900px;
-
-    margin: auto;
-
-    position: relative;
-
-    border-radius: 19px;
-
-    border: 1px solid #2a2934;
-
-    background:
-        linear-gradient(
-            145deg,
-            #111119,
-            #0b0b10
-        );
-
-    box-shadow:
-        0 20px 60px rgba(0,0,0,.5);
-}
-
-
-.composer:focus-within {
-    border-color:
-        rgba(157,92,255,.55);
-
-    box-shadow:
-        0 0 0 3px rgba(157,92,255,.07),
-        0 20px 60px rgba(0,0,0,.5);
-}
-
-
-textarea {
-    width: 100%;
-
-    min-height: 62px;
-    max-height: 180px;
-
-    resize: none;
-
-    padding:
-        17px
-        60px
-        48px
-        17px;
-
-    border: none;
-
-    outline: none;
-
-    background: transparent;
-
-    color: white;
-
-    font:
-        inherit;
-
-    line-height: 1.5;
-}
-
-
-textarea::placeholder {
-    color: #666672;
-}
-
-
-.composer-actions {
-    position: absolute;
-
-    left: 10px;
-    right: 10px;
-    bottom: 9px;
-
-    display: flex;
-
-    justify-content: space-between;
-
-    pointer-events: none;
-}
-
-
-.left-tools,
-.right-tools {
-    display: flex;
-    gap: 4px;
-
-    pointer-events: auto;
-}
-
-
-.composer-button {
-    width: 32px;
-    height: 32px;
-
-    border: none;
-
-    border-radius: 9px;
-
-    background: transparent;
-
-    color: #777783;
-
-    cursor: pointer;
-}
-
-
-.composer-button:hover {
-    background: #191920;
-
-    color: white;
-}
-
-
-.send-button {
-    width: 35px;
-    height: 35px;
-
-    border: none;
-
-    border-radius: 10px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #9d5cff,
-            #6428ce
-        );
-
-    color: white;
-
-    cursor: pointer;
-
-    font-weight: bold;
-
-    box-shadow:
-        0 0 18px rgba(157,92,255,.2);
-}
-
-
-.send-button:hover {
-    box-shadow:
-        0 0 28px rgba(157,92,255,.35);
-}
-
-
-.disclaimer {
-    text-align: center;
-
-    color: #4d4d58;
-
-    font-size: 10px;
-
-    margin-top: 7px;
-}
-
-
-/* =========================================================
-   MODAL
-   ========================================================= */
-
-.modal {
-    position: fixed;
-
-    inset: 0;
-
-    display: none;
-
-    align-items: center;
-    justify-content: center;
-
-    background:
-        rgba(0,0,0,.65);
-
-    backdrop-filter: blur(8px);
-
-    z-index: 100;
-}
-
-
-.modal.active {
-    display: flex;
-}
-
-
-.modal-box {
-    width: min(450px,90%);
-
-    background: #111118;
-
-    border: 1px solid var(--border);
-
-    border-radius: 20px;
-
-    padding: 24px;
-
-    box-shadow:
-        0 30px 100px rgba(0,0,0,.6);
-}
-
-
-.modal-box h2 {
-    margin-bottom: 18px;
-}
-
-
-.setting {
-    padding: 14px 0;
-
-    border-bottom:
-        1px solid var(--border);
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-}
-
-
-.setting:last-child {
-    border-bottom: none;
-}
-
-
-.close {
-    width: 100%;
-
-    margin-top: 18px;
-
-    padding: 11px;
-
-    border: none;
-
-    border-radius: 11px;
-
-    background: #191920;
-
-    color: white;
-
-    cursor: pointer;
-}
-
-
-/* =========================================================
-   MOBILE
-   ========================================================= */
-
-@media(max-width:760px) {
+@media(max-width: 750px) {
 
     .sidebar {
         display: none;
     }
 
-    .topbar {
-        height: 60px;
-
-        padding: 0 12px;
+    .welcome h1 {
+        font-size: 36px;
     }
 
-    .chat {
-        padding:
-            25px
-            10px
-            180px;
-    }
-
-    .message-content {
-        max-width: 88%;
-    }
-
-    .quick-actions {
+    .examples {
         grid-template-columns: 1fr;
     }
 
-    .welcome {
-        min-height: 65vh;
+    .composer-area {
+        left: 0;
+        padding: 10px;
     }
 
-    .composer-wrapper {
-        padding:
-            10px
-            8px
-            12px;
+    .chat {
+        padding-bottom: 160px;
     }
 
-    .model-status {
-        display: none;
+    .content {
+        max-width: 88%;
     }
 }
-
 </style>
 </head>
-
 
 <body>
 
 <div class="app">
 
-<!-- =====================================================
-     SIDEBAR
-     ===================================================== -->
+    <!-- SIDEBAR -->
 
-<aside class="sidebar">
+    <aside class="sidebar">
 
-    <div class="brand">
+        <div class="logo">
 
-        <div class="brand-icon">
-            KQ
+            <div class="logo-box">
+                KQ
+            </div>
+
+            <div class="logo-text">
+                KQ <span>AI</span>
+            </div>
+
         </div>
 
-        <div class="brand-name">
-            KQ <span>AI</span>
+        <button class="new-chat" onclick="newChat()">
+            ＋ Nowa rozmowa
+        </button>
+
+        <div class="history-title">
+            Historia
         </div>
 
-    </div>
+        <div id="history" class="history"></div>
 
+        <div class="sidebar-bottom">
 
-    <button
-        class="new-chat"
-        onclick="newChat()"
-    >
-        ＋ New conversation
-    </button>
+            <button
+                class="sidebar-button"
+                onclick="clearHistory()"
+            >
+                🗑 Wyczyść historię
+            </button>
 
-
-    <div class="search">
-
-        <span>⌕</span>
-
-        <input
-            id="searchInput"
-            placeholder="Szukaj rozmów..."
-            oninput="searchHistory()"
-        >
-
-    </div>
-
-
-    <div class="section-title">
-        Ostatnie rozmowy
-    </div>
-
-
-    <div
-        id="history"
-        class="history"
-    ></div>
-
-
-    <div class="sidebar-bottom">
-
-        <button
-            class="sidebar-button"
-            onclick="openSettings()"
-        >
-            ⚙️ Ustawienia
-        </button>
-
-        <button
-            class="sidebar-button"
-            onclick="clearAllHistory()"
-        >
-            🗑️ Wyczyść historię
-        </button>
-
-    </div>
-
-</aside>
-
-
-<!-- =====================================================
-     MAIN
-     ===================================================== -->
-
-<main class="main">
-
-
-<!-- TOPBAR -->
-
-<header class="topbar">
-
-    <div class="model-selector">
-
-        <div class="model-dot"></div>
-
-        <div class="model-name">
-            KQ AI
         </div>
 
-        <div class="model-status">
-            Demo Engine
+    </aside>
+
+
+    <!-- MAIN -->
+
+    <main class="main">
+
+        <header class="top">
+
+            <div class="status">
+
+                <div class="status-dot"></div>
+
+                KQ AI
+
+            </div>
+
+            <div class="top-right">
+                Lokalny silnik • v1.0
+            </div>
+
+        </header>
+
+
+        <section id="chat" class="chat">
+
+            <div id="chatInner" class="chat-inner">
+
+                <!-- WELCOME -->
+
+                <div id="welcome" class="welcome">
+
+                    <div class="orb">
+                        KQ
+                    </div>
+
+                    <h1>
+                        Witaj w
+                        <span>KQ AI</span>
+                    </h1>
+
+                    <p>
+                        Prosty inteligentny asystent KQ 🤖
+                    </p>
+
+
+                    <div class="examples">
+
+                        <button
+                            class="example"
+                            onclick="example('Ile to 25 + 37?')"
+                        >
+                            <b>🧮 Matematyka</b>
+                            Ile to 25 + 37?
+                        </button>
+
+
+                        <button
+                            class="example"
+                            onclick="example('Jaka jest stolica Polski?')"
+                        >
+                            <b>🌍 Wiedza</b>
+                            Jaka jest stolica Polski?
+                        </button>
+
+
+                        <button
+                            class="example"
+                            onclick="example('Kim jesteś?')"
+                        >
+                            <b>🤖 KQ AI</b>
+                            Kim jesteś?
+                        </button>
+
+
+                        <button
+                            class="example"
+                            onclick="example('Opowiedz mi ciekawostkę')"
+                        >
+                            <b>💡 Ciekawostka</b>
+                            Opowiedz mi ciekawostkę
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- INPUT -->
+
+        <div class="composer-area">
+
+            <div class="composer">
+
+                <textarea
+                    id="input"
+                    placeholder="Napisz coś do KQ AI..."
+                ></textarea>
+
+                <button
+                    class="send"
+                    onclick="sendMessage()"
+                >
+                    ↑
+                </button>
+
+            </div>
+
+            <div class="disclaimer">
+                KQ AI działa lokalnie i nie korzysta z zewnętrznego API.
+            </div>
+
         </div>
 
-    </div>
-
-
-    <div class="top-actions">
-
-        <button
-            class="icon-button"
-            onclick="newChat()"
-            title="Nowa rozmowa"
-        >
-            ＋
-        </button>
-
-        <button
-            class="icon-button"
-            onclick="openSettings()"
-            title="Ustawienia"
-        >
-            ⚙
-        </button>
-
-    </div>
-
-</header>
-
-
-<!-- CHAT -->
-
-<section
-    id="chat"
-    class="chat"
->
-
-<div
-    id="chatInner"
-    class="chat-inner"
->
-
-<!-- WELCOME -->
-
-<div
-    id="welcome"
-    class="welcome"
->
-
-    <div class="kq-orb">
-        KQ
-    </div>
-
-
-    <h1>
-        Witaj w
-        <span>KQ AI</span>
-    </h1>
-
-
-    <p>
-        Inteligentny asystent tworzony w ramach
-        ekosystemu KQ.
-    </p>
-
-
-    <div class="quick-actions">
-
-        <button
-            class="quick"
-            onclick="quickPrompt('Pomóż mi wymyślić nowy projekt na stronę KQ Games.')"
-        >
-
-            <strong>
-                💡 Wymyśl projekt
-            </strong>
-
-            <small>
-                Pomysły na nowe projekty
-            </small>
-
-        </button>
-
-
-        <button
-            class="quick"
-            onclick="quickPrompt('Napisz mi ciekawy kod HTML na stronę.')"
-        >
-
-            <strong>
-                💻 Pomoc z kodem
-            </strong>
-
-            <small>
-                HTML, CSS i JavaScript
-            </small>
-
-        </button>
-
-
-        <button
-            class="quick"
-            onclick="quickPrompt('Wyjaśnij mi coś trudnego w prosty sposób.')"
-        >
-
-            <strong>
-                🧠 Wyjaśnij
-            </strong>
-
-            <small>
-                Nauka bez komplikowania
-            </small>
-
-        </button>
-
-
-        <button
-            class="quick"
-            onclick="quickPrompt('Wymyśl mi coś kreatywnego.')"
-        >
-
-            <strong>
-                🚀 Kreatywność
-            </strong>
-
-            <small>
-                Pomysły, nazwy i projekty
-            </small>
-
-        </button>
-
-    </div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- COMPOSER -->
-
-<div class="composer-wrapper">
-
-<div class="composer">
-
-<textarea
-    id="input"
-    placeholder="Napisz wiadomość do KQ AI..."
-></textarea>
-
-
-<div class="composer-actions">
-
-    <div class="left-tools">
-
-        <button
-            class="composer-button"
-            title="Dodaj plik"
-            onclick="fakeFeature('📎 Załączniki będą dostępne w kolejnej wersji.')"
-        >
-            📎
-        </button>
-
-        <button
-            class="composer-button"
-            title="Mikrofon"
-            onclick="fakeFeature('🎤 Rozpoznawanie głosu będzie dodane później.')"
-        >
-            🎤
-        </button>
-
-    </div>
-
-
-    <div class="right-tools">
-
-        <button
-            id="sendButton"
-            class="send-button"
-            onclick="sendMessage()"
-        >
-            ↑
-        </button>
-
-    </div>
-
-</div>
-
-</div>
-
-
-<div class="disclaimer">
-    KQ AI może popełniać błędy. Sprawdzaj ważne informacje.
-</div>
-
-</div>
-
-</main>
-
-</div>
-
-
-<!-- =====================================================
-     SETTINGS MODAL
-     ===================================================== -->
-
-<div
-    id="settingsModal"
-    class="modal"
-    onclick="closeModalOutside(event)"
->
-
-<div class="modal-box">
-
-    <h2>
-        ⚙️ KQ AI — ustawienia
-    </h2>
-
-
-    <div class="setting">
-
-        <span>
-            Tryb demonstracyjny
-        </span>
-
-        <span style="color:#80ffab">
-            AKTYWNY
-        </span>
-
-    </div>
-
-
-    <div class="setting">
-
-        <span>
-            Zapisywanie rozmów
-        </span>
-
-        <span style="color:#80ffab">
-            ON
-        </span>
-
-    </div>
-
-
-    <div class="setting">
-
-        <span>
-            Wersja
-        </span>
-
-        <span>
-            2.0
-        </span>
-
-    </div>
-
-
-    <button
-        class="close"
-        onclick="closeSettings()"
-    >
-        Zamknij
-    </button>
-
-</div>
+    </main>
 
 </div>
 
@@ -1504,34 +646,26 @@ textarea::placeholder {
 <script>
 
 /* =========================================================
-   KQ AI ENGINE
+   KQ AI — LOKALNY SILNIK
    ========================================================= */
 
 const input =
     document.getElementById("input");
 
-const chat =
-    document.getElementById("chat");
-
 const chatInner =
     document.getElementById("chatInner");
+
+const chat =
+    document.getElementById("chat");
 
 const history =
     document.getElementById("history");
 
-
-let conversation = [];
-
-
-/* =========================================================
-   START
-   ========================================================= */
-
-loadHistory();
+let messages = [];
 
 
 /* =========================================================
-   SEND MESSAGE
+   WYSYŁANIE
    ========================================================= */
 
 function sendMessage() {
@@ -1553,40 +687,18 @@ function sendMessage() {
     );
 
 
-    conversation.push({
+    messages.push({
         role: "user",
-        content: text
+        text: text
     });
 
 
     input.value = "";
 
-    resizeInput();
+    input.style.height = "auto";
 
 
     showTyping();
-
-
-    /*
-       ======================================================
-       TUTAJ BĘDZIE PRAWDZIWE API AI
-       ======================================================
-
-       Przykładowo później:
-
-       fetch("/api/chat", {
-           method: "POST",
-           headers: {
-               "Content-Type": "application/json"
-           },
-           body: JSON.stringify({
-               messages: conversation
-           })
-       })
-
-       API KEY NIE MOŻE ZNAJDOWAĆ SIĘ W TYM PLIKU.
-       ======================================================
-    */
 
 
     setTimeout(() => {
@@ -1594,125 +706,361 @@ function sendMessage() {
         hideTyping();
 
 
-        const response =
-            demoAI(text);
+        const answer =
+            KQAI(text);
 
 
         addMessage(
             "ai",
-            response
+            answer
         );
 
 
-        conversation.push({
-            role: "assistant",
-            content: response
+        messages.push({
+            role: "ai",
+            text: answer
         });
 
 
-        saveConversation();
+        saveHistory();
 
-    }, 900);
+    }, 500);
 
 }
 
 
 /* =========================================================
-   DEMO AI
+   KQ AI — MÓZG
    ========================================================= */
 
-function demoAI(text) {
+function KQAI(question) {
 
-    const lower =
-        text.toLowerCase();
+    const q =
+        question
+            .toLowerCase()
+            .trim();
 
+
+    /* POWITANIA */
 
     if (
-        lower.includes("hej") ||
-        lower.includes("cześć") ||
-        lower.includes("siema")
+        q.includes("cześć") ||
+        q.includes("czesc") ||
+        q.includes("hej") ||
+        q.includes("siema") ||
+        q.includes("witaj")
+    ) {
+
+        return "Hej! 👋 Jestem KQ AI. W czym mogę Ci pomóc?";
+
+    }
+
+
+    /* KIM JESTEŚ */
+
+    if (
+        q.includes("kim jesteś") ||
+        q.includes("kim jestes") ||
+        q.includes("co to jesteś") ||
+        q.includes("co to jest kq ai")
+    ) {
+
+        return "Jestem KQ AI 🤖 — prostym asystentem stworzonym dla ekosystemu KQ.";
+
+    }
+
+
+    /* STOLICA POLSKI */
+
+    if (
+        q.includes("stolica polski") ||
+        q.includes("stolicą polski")
+    ) {
+
+        return "Stolicą Polski jest Warszawa 🇵🇱.";
+
+    }
+
+
+    /* POLSKA */
+
+    if (
+        q === "polska" ||
+        q.includes("gdzie leży polska")
+    ) {
+
+        return "Polska znajduje się w Europie Środkowej 🇵🇱.";
+
+    }
+
+
+    /* DZISIAJ */
+
+    if (
+        q.includes("jaki dzisiaj dzień") ||
+        q.includes("jaki jest dzisiaj dzień") ||
+        q.includes("data")
+    ) {
+
+        const today =
+            new Date();
+
+        return "Dzisiaj jest " +
+            today.toLocaleDateString(
+                "pl-PL",
+                {
+                    weekday: "long",
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric"
+                }
+            ) + ".";
+
+    }
+
+
+    /* CZAS */
+
+    if (
+        q.includes("która godzina") ||
+        q.includes("jaka godzina") ||
+        q.includes("godzina")
+    ) {
+
+        return "Teraz jest " +
+            new Date().toLocaleTimeString(
+                "pl-PL",
+                {
+                    hour: "2-digit",
+                    minute: "2-digit"
+                }
+            ) + " ⏰";
+
+    }
+
+
+    /* KQ */
+
+    if (
+        q.includes("kq games")
+    ) {
+
+        return "KQ Games 🎮 to część Twojego ekosystemu KQ. Możemy później połączyć KQ Games, KQ AI i KQGame Chat w jeden panel.";
+
+    }
+
+
+    /* MATEMATYKA */
+
+    const math =
+        q.match(
+            /^[\d\s+\-*/().]+$/
+        );
+
+
+    if (math) {
+
+        try {
+
+            const result =
+                Function(
+                    '"use strict"; return (' +
+                    q +
+                    ')'
+                )();
+
+
+            if (
+                typeof result === "number" &&
+                Number.isFinite(result)
+            ) {
+
+                return "Wynik: **" +
+                    result +
+                    "** 🧮";
+
+            }
+
+        } catch(e) {}
+
+    }
+
+
+    /* DODAWANIE */
+
+    const addition =
+        q.match(
+            /ile to (\d+)\s*\+\s*(\d+)/i
+        );
+
+
+    if (addition) {
+
+        const a =
+            Number(addition[1]);
+
+        const b =
+            Number(addition[2]);
+
+        return "Wynik: " +
+            (a + b) +
+            " 🧮";
+
+    }
+
+
+    /* ODEJMOWANIE */
+
+    const subtraction =
+        q.match(
+            /ile to (\d+)\s*-\s*(\d+)/i
+        );
+
+
+    if (subtraction) {
+
+        const a =
+            Number(subtraction[1]);
+
+        const b =
+            Number(subtraction[2]);
+
+        return "Wynik: " +
+            (a - b) +
+            " 🧮";
+
+    }
+
+
+    /* MNOŻENIE */
+
+    const multiplication =
+        q.match(
+            /ile to (\d+)\s*(?:\*|x|×)\s*(\d+)/i
+        );
+
+
+    if (multiplication) {
+
+        const a =
+            Number(multiplication[1]);
+
+        const b =
+            Number(multiplication[2]);
+
+        return "Wynik: " +
+            (a * b) +
+            " 🧮";
+
+    }
+
+
+    /* DZIELENIE */
+
+    const division =
+        q.match(
+            /ile to (\d+)\s*(?:\/|÷)\s*(\d+)/i
+        );
+
+
+    if (division) {
+
+        const a =
+            Number(division[1]);
+
+        const b =
+            Number(division[2]);
+
+        if (b === 0) {
+
+            return "Nie można dzielić przez zero 😅";
+
+        }
+
+        return "Wynik: " +
+            (a / b) +
+            " 🧮";
+
+    }
+
+
+    /* CIEKAWOSTKA */
+
+    if (
+        q.includes("ciekawost")
+    ) {
+
+        const facts = [
+
+            "Ośmiornice mają trzy serca 🐙.",
+
+            "Banany są botanicznie jagodami 🍌.",
+
+            "Miód może bardzo długo zachować swoje właściwości 🍯.",
+
+            "Serce kolibra może bić bardzo szybko podczas lotu 🐦.",
+
+            "Na Ziemi istnieje więcej drzew niż gwiazd w Drodze Mlecznej 🌳."
+
+        ];
+
+
+        return facts[
+            Math.floor(
+                Math.random() *
+                facts.length
+            )
+        ];
+
+    }
+
+
+    /* POMOC */
+
+    if (
+        q.includes("pomóż") ||
+        q.includes("pomoz") ||
+        q.includes("co potrafisz")
     ) {
 
         return `
-Hej! 👋
+Na razie potrafię:
 
-Tu KQ AI.
+🧮 wykonywać proste działania
+🌍 odpowiadać na kilka podstawowych pytań
+🤖 odpowiadać na pytania o KQ AI
+💡 podawać ciekawostki
+⏰ sprawdzać godzinę
+📅 sprawdzać datę
 
-W tej wersji działa już cały interfejs aplikacji, a następnym krokiem jest podłączenie prawdziwego modelu AI.
-
-KQ AI będzie wtedy mogło normalnie prowadzić rozmowy.
+To dopiero początek KQ AI 🚀
         `.trim();
 
     }
 
 
-    if (
-        lower.includes("kod") ||
-        lower.includes("html") ||
-        lower.includes("javascript")
-    ) {
-
-        return `
-💻 Jasne!
-
-KQ AI może być później używane również jako pomocnik programistyczny.
-
-Możemy zrobić np.:
-
-• generowanie HTML
-• CSS
-• JavaScript
-• poprawianie błędów
-• tworzenie całych stron
-• analizowanie kodu
-
-A wszystko może być spięte z ekosystemem KQ.
-        `.trim();
-
-    }
-
-
-    if (
-        lower.includes("kq") ||
-        lower.includes("games")
-    ) {
-
-        return `
-🔥 KQ AI + KQ Games to już może być naprawdę mocny projekt.
-
-Możemy zrobić jeden wspólny panel KQ, w którym będą:
-
-🎮 KQ Games
-🤖 KQ AI
-💬 KQGame Chat
-👤 konto użytkownika
-🏆 osiągnięcia
-⚙️ ustawienia
-
-Czyli cały ekosystem KQ w jednym miejscu.
-        `.trim();
-
-    }
-
+    /* DOMYŚLNA */
 
     return `
-Rozumiem. 👀
+Nie znam jeszcze odpowiedzi na to pytanie 😅
 
-To jest obecnie demonstracyjna wersja KQ AI.
+Możesz spróbować zapytać mnie o:
 
-Interfejs jest już przygotowany pod prawdziwy model AI.
+• matematykę 🧮
+• stolicę Polski 🇵🇱
+• godzinę ⏰
+• datę 📅
+• KQ AI 🤖
+• ciekawostki 💡
 
-Kolejny krok:
-🔌 backend → API → prawdziwa odpowiedź AI.
-
-Wtedy KQ AI przestanie korzystać z odpowiedzi demo i zacznie naprawdę myśleć poprzez podłączony model.
+Z czasem możemy rozbudować mózg KQ AI o dużo więcej odpowiedzi.
     `.trim();
 
 }
 
 
 /* =========================================================
-   ADD MESSAGE
+   WIADOMOŚĆ
    ========================================================= */
 
 function addMessage(
@@ -1721,14 +1069,18 @@ function addMessage(
 ) {
 
     const message =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
 
     message.className =
         "message " + type;
 
 
     const avatar =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
 
     avatar.className =
         "avatar";
@@ -1740,67 +1092,36 @@ function addMessage(
 
 
     const content =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
 
     content.className =
-        "message-content";
+        "content";
 
 
     const bubble =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
 
     bubble.className =
         "bubble";
 
-    bubble.textContent =
-        text;
+
+    /* Proste formatowanie */
+
+    bubble.innerHTML =
+        escapeHTML(text)
+            .replace(
+                /\*\*(.*?)\*\*/g,
+                "<strong>$1</strong>"
+            );
 
 
     content.appendChild(
         bubble
     );
-
-
-    if (type === "ai") {
-
-        const tools =
-            document.createElement("div");
-
-        tools.className =
-            "message-tools";
-
-
-        tools.innerHTML = `
-
-            <button
-                class="tool"
-                onclick="copyText(this)"
-            >
-                📋 Kopiuj
-            </button>
-
-            <button
-                class="tool"
-                onclick="this.textContent='👍 Dzięki!'"
-            >
-                👍
-            </button>
-
-            <button
-                class="tool"
-                onclick="this.textContent='👎 Dzięki za feedback'"
-            >
-                👎
-            </button>
-
-        `;
-
-
-        content.appendChild(
-            tools
-        );
-
-    }
 
 
     message.appendChild(
@@ -1818,6 +1139,23 @@ function addMessage(
 
 
     scrollBottom();
+
+}
+
+
+/* =========================================================
+   BEZPIECZNY TEKST
+   ========================================================= */
+
+function escapeHTML(text) {
+
+    return text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
 }
 
 
@@ -1827,13 +1165,10 @@ function addMessage(
 
 function showTyping() {
 
-    if (
-        document.getElementById("typing")
-    ) return;
-
-
     const typing =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
 
     typing.id =
         "typing";
@@ -1848,7 +1183,7 @@ function showTyping() {
             KQ
         </div>
 
-        <div class="message-content">
+        <div class="content">
 
             <div class="typing">
 
@@ -1868,57 +1203,28 @@ function showTyping() {
 
 
     scrollBottom();
+
 }
 
 
 function hideTyping() {
 
     document
-        .getElementById("typing")
+        .getElementById(
+            "typing"
+        )
         ?.remove();
 
 }
 
 
 /* =========================================================
-   COPY
-   ========================================================= */
-
-function copyText(button) {
-
-    const bubble =
-        button
-            .closest(".message-content")
-            .querySelector(".bubble");
-
-
-    navigator.clipboard
-        .writeText(
-            bubble.textContent
-        );
-
-
-    button.textContent =
-        "✓ Skopiowano";
-
-
-    setTimeout(() => {
-
-        button.textContent =
-            "📋 Kopiuj";
-
-    }, 1500);
-
-}
-
-
-/* =========================================================
-   NEW CHAT
+   NOWA ROZMOWA
    ========================================================= */
 
 function newChat() {
 
-    conversation = [];
+    messages = [];
 
 
     chatInner.innerHTML = `
@@ -1928,7 +1234,7 @@ function newChat() {
             class="welcome"
         >
 
-            <div class="kq-orb">
+            <div class="orb">
                 KQ
             </div>
 
@@ -1938,36 +1244,34 @@ function newChat() {
             </h1>
 
             <p>
-                Inteligentny asystent tworzony
-                w ramach ekosystemu KQ.
+                Prosty inteligentny asystent KQ 🤖
             </p>
 
         </div>
 
     `;
 
-    input.focus();
 }
 
 
 /* =========================================================
-   QUICK PROMPT
+   PRZYKŁADOWE PYTANIA
    ========================================================= */
 
-function quickPrompt(text) {
+function example(text) {
 
     input.value =
         text;
 
-    resizeInput();
-
     input.focus();
+
+    sendMessage();
 
 }
 
 
 /* =========================================================
-   INPUT
+   ENTER
    ========================================================= */
 
 input.addEventListener(
@@ -1989,24 +1293,25 @@ input.addEventListener(
 );
 
 
+/* =========================================================
+   AUTOMATYCZNA WYSOKOŚĆ
+   ========================================================= */
+
 input.addEventListener(
     "input",
-    resizeInput
+    function() {
+
+        this.style.height =
+            "auto";
+
+        this.style.height =
+            Math.min(
+                this.scrollHeight,
+                170
+            ) + "px";
+
+    }
 );
-
-
-function resizeInput() {
-
-    input.style.height =
-        "auto";
-
-    input.style.height =
-        Math.min(
-            input.scrollHeight,
-            180
-        ) + "px";
-
-}
 
 
 /* =========================================================
@@ -2015,86 +1320,93 @@ function resizeInput() {
 
 function scrollBottom() {
 
-    requestAnimationFrame(() => {
+    setTimeout(() => {
 
         chat.scrollTop =
             chat.scrollHeight;
 
-    });
+    }, 20);
 
 }
 
 
 /* =========================================================
-   LOCAL STORAGE
+   HISTORIA
    ========================================================= */
 
-function saveConversation() {
+function saveHistory() {
 
     if (
-        conversation.length === 0
+        messages.length === 0
     ) return;
 
 
-    const saved =
+    const old =
         JSON.parse(
             localStorage.getItem(
-                "kq_ai_history"
+                "kqAIHistory"
             ) || "[]"
         );
 
 
     const first =
-        conversation.find(
+        messages.find(
             x => x.role === "user"
         );
 
 
-    saved.unshift({
+    const item = {
+
         title:
             first
-                ? first.content.substring(0,40)
+                ? first.text.slice(0, 35)
                 : "Nowa rozmowa",
 
         messages:
-            conversation,
+            messages,
 
         date:
             Date.now()
-    });
+
+    };
+
+
+    old.unshift(item);
 
 
     localStorage.setItem(
-        "kq_ai_history",
+        "kqAIHistory",
         JSON.stringify(
-            saved.slice(0,30)
+            old.slice(0, 20)
         )
     );
 
 
     loadHistory();
+
 }
 
 
 /* =========================================================
-   HISTORY
+   WCZYTAJ HISTORIĘ
    ========================================================= */
 
 function loadHistory() {
 
-    history.innerHTML = "";
+    history.innerHTML =
+        "";
 
 
     const saved =
         JSON.parse(
             localStorage.getItem(
-                "kq_ai_history"
+                "kqAIHistory"
             ) || "[]"
         );
 
 
     saved.forEach(
-        (item, index) => {
+        item => {
 
             const button =
                 document.createElement(
@@ -2110,10 +1422,29 @@ function loadHistory() {
                 item.title;
 
 
-            button.onclick = () =>
-                loadConversation(
-                    item
-                );
+            button.onclick =
+                () => {
+
+                    messages =
+                        item.messages;
+
+
+                    chatInner.innerHTML =
+                        "";
+
+
+                    messages.forEach(
+                        message => {
+
+                            addMessage(
+                                message.role,
+                                message.text
+                            );
+
+                        }
+                    );
+
+                };
 
 
             history.appendChild(
@@ -2127,141 +1458,27 @@ function loadHistory() {
 
 
 /* =========================================================
-   LOAD CONVERSATION
+   WYCZYŚĆ HISTORIĘ
    ========================================================= */
 
-function loadConversation(item) {
-
-    conversation =
-        item.messages || [];
-
-
-    chatInner.innerHTML =
-        "";
-
-
-    conversation.forEach(
-        message => {
-
-            addMessage(
-                message.role === "user"
-                    ? "user"
-                    : "ai",
-
-                message.content
-            );
-
-        }
-    );
-
-
-    scrollBottom();
-}
-
-
-/* =========================================================
-   SEARCH
-   ========================================================= */
-
-function searchHistory() {
-
-    const query =
-        document
-            .getElementById(
-                "searchInput"
-            )
-            .value
-            .toLowerCase();
-
-
-    document
-        .querySelectorAll(
-            ".history-item"
-        )
-        .forEach(item => {
-
-            item.style.display =
-                item.textContent
-                    .toLowerCase()
-                    .includes(query)
-                        ? "block"
-                        : "none";
-
-        });
-
-}
-
-
-/* =========================================================
-   CLEAR HISTORY
-   ========================================================= */
-
-function clearAllHistory() {
-
-    if (
-        !confirm(
-            "Na pewno wyczyścić całą historię?"
-        )
-    ) return;
-
+function clearHistory() {
 
     localStorage.removeItem(
-        "kq_ai_history"
+        "kqAIHistory"
     );
 
-
     loadHistory();
-}
-
-
-/* =========================================================
-   SETTINGS
-   ========================================================= */
-
-function openSettings() {
-
-    document
-        .getElementById(
-            "settingsModal"
-        )
-        .classList.add(
-            "active"
-        );
 
 }
 
 
-function closeSettings() {
+/* START */
 
-    document
-        .getElementById(
-            "settingsModal"
-        )
-        .classList.remove(
-            "active"
-        );
+loadHistory();
 
-}
+</script>
 
+</body>
+</html>
 
-function closeModalOutside(event) {
-
-    if (
-        event.target.id ===
-        "settingsModal"
-    ) {
-
-        closeSettings();
-
-    }
-
-}
-
-
-/* =========================================================
-   FUTURE FEATURES
-   ========================================================= */
-
-function fakeFeature(text) {
-
-    alert(text
+   
